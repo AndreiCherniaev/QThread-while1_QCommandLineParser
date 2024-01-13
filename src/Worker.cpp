@@ -36,11 +36,9 @@ void Worker::run()
         //else user can send CMD with wrong values
         bool noCheck= false;
         bool cmd_correct= true;
-        //QTextStream(stdout)<< "WatingCommand\n";
         QTextStream(stdout)<< "# ";
 
         QTextStream qin(stdin);
-        //QStringList cmds = QCoreApplication::arguments()<< qin.readLine().split("&&");
         QStringList cmd = QCoreApplication::arguments()<< qin.readLine().split(" ");
 
         QCommandLineParser parser;
@@ -51,8 +49,8 @@ void Worker::run()
         parser.parse(cmd);
         const QStringList args = parser.positionalArguments();
         const QString command = args.isEmpty() ? QString() : args.first();
-        if(command == "w"){
-            qDebug() << "welcome" << m_message << count;
+        if(command == "c"){
+            qDebug() << "!c!" << m_message << count;
         }
 
         count++;

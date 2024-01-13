@@ -9,7 +9,7 @@ MainClass::MainClass(QObject *parent) :
     qDebug() << "MainWindow::MainWindow";
 
     connect(&timer, &QTimer::timeout, this, &MainClass::handleSignal);
-    timer.start(3000);
+    timer.start(1000);
 
     //Старт метода run() будет осуществляться по сигналу запуска от соответствующей нити
     connect(thread.get(), &QThread::started, worker.get(), &Worker::run);
@@ -43,7 +43,7 @@ MainClass::~MainClass()
 void MainClass::handleSignal(){
     qDebug()<<"Welcome to Signal handled: " << 123;
     //Остановка нитей через завершение выполнения метода run в объекте worker
-   // thread->requestInterruption(); //worker->setRunning(false);
+    thread->requestInterruption(); //worker->setRunning(false);
     qDebug()<<"requestInterruption";
 }
 
